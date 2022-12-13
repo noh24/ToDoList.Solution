@@ -39,7 +39,7 @@ namespace ToDoList.Tests
     [TestMethod]
     public void GetAll_ReturnsEmptyList_ItemList()
     {
-      List<Item> newList = new List<Item> {};
+      List<Item> newList = new List<Item> { };
       List<Item> result = Item.GetAll(); // static method returns List<Item>
 
       foreach (Item thisItem in result)
@@ -55,14 +55,37 @@ namespace ToDoList.Tests
       string description02 = "wash the dishes";
       Item newItem1 = new Item(description01);
       Item newItem2 = new Item(description02);
-      List<Item> newList = new List<Item> {newItem1, newItem2};
+      List<Item> newList = new List<Item> { newItem1, newItem2 };
       List<Item> result = Item.GetAll();
-      
+
       foreach (Item thisItem in result)
       {
         Console.WriteLine($"Output from second GetAll test: {thisItem.Description}");
       }
       CollectionAssert.AreEqual(newList, result);
+    }
+    [TestMethod]
+    public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
+    {
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
+      int result = newItem.Id;
+      Assert.AreEqual(1, result);
+    }
+    [TestMethod]
+    public void Find_ReturnsCorrectItem_Item()
+    {
+      //Arrange
+      string description01 = "Walk the dog";
+      string description02 = "Wash the dishes";
+      Item newItem1 = new Item(description01);
+      Item newItem2 = new Item(description02);
+
+      //Act
+      Item result = Item.Find(2);
+
+      //Assert
+      Assert.AreEqual(newItem2, result);
     }
   }
 }
