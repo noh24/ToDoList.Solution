@@ -14,7 +14,7 @@ namespace ToDoList
       WebApplication app = builder.Build();
 
       app.UseHttpsRedirection();
-
+      app.UseStaticFiles(); // method will allow static content like images and css 
       app.UseRouting();
 
       app.MapControllerRoute(
