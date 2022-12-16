@@ -1,28 +1,20 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ToDoList
 {
-  class Program
+  public class Program
   {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-      WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+      var host = new WebHostBuilder()
+        .UseKestrel()
+        .UseContentRoot(Directory.GetCurrentDirectory())
+        .UseIISIntegration()
+        .UseStartup<Startup>()
+        .Build();
 
-      builder.Services.AddControllersWithViews();
-
-      WebApplication app = builder.Build();
-
-      app.UseHttpsRedirection();
-      app.UseStaticFiles(); // method will allow static content like images and css 
-      app.UseRouting();
-
-      app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}"
-      );
-
-      app.Run();
+      host.Run();
     }
   }
 }
