@@ -22,6 +22,7 @@ namespace ToDoList.Controllers
                             .Include(item => item.Category) // ef core : for each Item, include the Category it belongs to 
                                                             // go into categories table and retrieve category object and assign it to item.Category
                             .ToList();
+      ViewBag.Example = "This is how you use a viewbag @ViewBag.Example";
       return View(model);
     }
     public ActionResult Create()
