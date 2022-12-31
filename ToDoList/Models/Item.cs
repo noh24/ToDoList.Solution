@@ -9,5 +9,6 @@ namespace ToDoList.Models
     public int ItemId { get; set; }
     public int CategoryId { get; set; }
     public Category Category { get; set; } //reference navigation property : holds a reference of a single related entity
+    public List<ItemTag> JoinEntities { get;}
   }
 }

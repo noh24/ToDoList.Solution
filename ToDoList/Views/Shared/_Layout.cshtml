@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
-    @RenderBody()
-    @ViewBag.Example
-    @await Html.PartialAsync("Footer")
+    <div class="d-flex flex-column jumbotron text-center container bg-white shadow">
+      @RenderBody()
+      @ViewBag.Example
+      @await Html.PartialAsync("Footer")
+    </div>
   </body>
 </html>
