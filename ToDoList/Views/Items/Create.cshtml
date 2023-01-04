@@ -5,6 +5,13 @@
 @model ToDoList.Models.Item
 
 <h4>Add a new task</h4>
+@* 
+This HtmlHelper returns HTML markup for a validation-error message for specific model properties (CategoryId).
+The first argument is whatever property the validation message is for.
+The second argument is an empty string if there are no errors but it's replaced by error-message set in [Range()] if there is an error.
+ *@
+<p>@Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger", @style = "font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger", @style = "font-weight: 600;"})</p>
 
 @using (Html.BeginForm())
 {

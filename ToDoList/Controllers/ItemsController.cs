@@ -34,13 +34,18 @@ namespace ToDoList.Controllers
     [HttpPost]
     public ActionResult Create(Item item)
     {
-      if (item.CategoryId == 0)
+      // Check if ModelState is valid/not-valid
+      if (!ModelState.IsValid) 
       {
-        return RedirectToAction("Create");
+        ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+        return View(item); // returns the invalid item along with the select list with categoryIds ^
       }
-      _db.Items.Add(item);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      else 
+      {
+        _db.Items.Add(item);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public ActionResult AddTag(int id)
